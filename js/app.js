@@ -39,9 +39,21 @@ function shuffle(array) {
  */
 
  let deck = document.querySelectorAll ('.card');
+ let clickedCards = [];
 
  deck.forEach(function(card){
    card.addEventListener('click', function(flip){
+     clickedCards.push (card);
      card.classList.add('open','show');
+
+     if (clickedCards.length == 2) {
+       setTimeout(function(){
+         clickedCards.forEach(function (card) {
+           card.classList.remove('open','show');
+         });
+
+         clickedCards = [];
+       }, 1000);
+     }
    });
  });
