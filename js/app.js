@@ -26,6 +26,7 @@ function shuffle(array) {
     return array;
 }
 
+//function to create game board
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -42,18 +43,64 @@ function shuffle(array) {
  let clickedCards = [];
 
  deck.forEach(function(card){
-   card.addEventListener('click', function(flip){
+   card.addEventListener('click', function(e){
      clickedCards.push (card);
      card.classList.add('open','show');
 
-     if (clickedCards.length == 2) {
-       setTimeout(function(){
+//setTimeout function
+if (clickedCards.length === 2) {
+       setTimeout (function() {
          clickedCards.forEach(function (card) {
            card.classList.remove('open','show');
-         });
+       });
+       clickedCards= [];
 
-         clickedCards = [];
-       }, 1000);
-     }
+     }, 1000);
+checkMatch ();
+       }
+     });
    });
- });
+
+//Checking Match function 
+function checkMatch() {
+if (
+  clickedCards[0].firstElementChild.className ===
+  clickedCards[1].firstElementChild.className
+){
+  console.log('Match!');
+} else {
+  console.log ('No Match!')
+}
+}
+
+
+//function for clicked
+
+//function to flip cards
+
+//function to add card to an array
+
+//function for when cards do not match
+
+//function to disable clicks on matched cards
+
+//function to count moves
+
+//function to decree star rating
+
+//funciton to count time
+
+//function to display time
+
+//function to show modal when game is over
+
+//function to reset game
+
+//function to reset the time
+
+//function to reset moves
+
+//function to stop game when all the cards are matched
+
+
+//if cards match function
