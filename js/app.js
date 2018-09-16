@@ -41,6 +41,7 @@ function shuffle(array) {
 
  let deck = document.querySelectorAll ('.card');
  let clickedCards = [];
+ let matchedCards = [];
 
  deck.forEach(function(card){
    card.addEventListener('click', function(e){
@@ -61,32 +62,34 @@ checkMatch ();
      });
    });
 
-//Checking Match function 
+//Checking Match function
 function checkMatch() {
 if (
   clickedCards[0].firstElementChild.className ===
   clickedCards[1].firstElementChild.className
 ){
+  gotMatch ();
+  matchedCards.push(clickedCards[0], clickedCards[1])
   console.log('Match!');
 } else {
   console.log ('No Match!')
 }
 }
 
+//function for when cards match
+function gotMatch() {
+  clickedCards[0].classList.toggle('match');
+  clickedCards[1].classList.toggle('match');
 
-//function for clicked
-
-//function to flip cards
-
-//function to add card to an array
-
-//function for when cards do not match
+}
 
 //function to disable clicks on matched cards
 
+//function for when cards do not match
+
 //function to count moves
 
-//function to decree star rating
+//function to decrees star rating
 
 //funciton to count time
 
