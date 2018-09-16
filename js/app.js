@@ -93,9 +93,10 @@ function checkMatch() {
 
 //function for when cards match
 function gotMatch() {
-    clickedCards[0].classList.toggle('match');
-    clickedCards[1].classList.toggle('match');
+    clickedCards[0].classList.toggle('match','disabled');
+    clickedCards[1].classList.toggle('match', 'disabled');
     console.log(matchedCards.length);
+    
     if (matchedCards.length === 16) {
         gameOver();
     }
