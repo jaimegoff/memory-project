@@ -80,7 +80,10 @@ if (
 function gotMatch() {
   clickedCards[0].classList.toggle('match');
   clickedCards[1].classList.toggle('match');
-
+  console.log(matchedCards.length);
+  if (matchedCards.length === 16) {
+    gameOver();
+  }
 }
 
 //function to disable clicks on matched cards
@@ -105,5 +108,8 @@ function gotMatch() {
 
 //function to stop game when all the cards are matched
 
+function gameOver() {
+  console.log ('YOU MATCHED ALL THE CARDS!')
+}
 
 //if cards match function
