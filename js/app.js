@@ -1,7 +1,12 @@
+//Global variables
+let deck = document.querySelector('.deck');
+let card = document.getElementsByClassName('card');
+let cards = [...card];
+let clickedCards = [];
+let matchedCards = [];
 /*
  * Create a list that holds all of your cards
  */
-
 
 /*
  * Display the cards on the page
@@ -13,7 +18,8 @@
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -25,7 +31,18 @@ function shuffle(array) {
 
     return array;
 }
+//function to shuffle deck and generate new cards
 
+function startGame() {
+    const shuffledCards = shuffle(cards);
+    for (var index = 0; index < shuffledCards.length; index++) {
+        [].forEach.call(shuffledCards, function(card) {
+            deck.appendChild(card);
+        });
+    }
+}
+
+window.onload = startGame();
 //function to create game board
 
 /*
@@ -39,51 +56,49 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
- let deck = document.querySelectorAll ('.card');
- let clickedCards = [];
- let matchedCards = [];
 
- deck.forEach(function(card){
-   card.addEventListener('click', function(e){
-     clickedCards.push (card);
-     card.classList.add('open','show');
 
-//setTimeout function
-if (clickedCards.length === 2) {
-       setTimeout (function() {
-         clickedCards.forEach(function (card) {
-           card.classList.remove('open','show');
-       });
-       clickedCards= [];
+cards.forEach(function(card) {
+    card.addEventListener('click', function(e) {
+        clickedCards.push(card);
+        card.classList.add('open', 'show');
 
-     }, 1000);
-checkMatch ();
-       }
-     });
-   });
+        //setTimeout function
+        if (clickedCards.length === 2) {
+            setTimeout(function() {
+                clickedCards.forEach(function(card) {
+                    card.classList.remove('open', 'show');
+                });
+                clickedCards = [];
+
+            }, 1000);
+            checkMatch();
+        }
+    });
+});
 
 //Checking Match function
 function checkMatch() {
-if (
-  clickedCards[0].firstElementChild.className ===
-  clickedCards[1].firstElementChild.className
-){
-  gotMatch ();
-  matchedCards.push(clickedCards[0], clickedCards[1])
-  console.log('Match!');
-} else {
-  console.log ('No Match!')
-}
+    if (
+        clickedCards[0].firstElementChild.className ===
+        clickedCards[1].firstElementChild.className
+    ) {
+        gotMatch();
+        matchedCards.push(clickedCards[0], clickedCards[1]);
+        console.log('Match!');
+    } else {
+        console.log('No Match!');
+    }
 }
 
 //function for when cards match
 function gotMatch() {
-  clickedCards[0].classList.toggle('match');
-  clickedCards[1].classList.toggle('match');
-  console.log(matchedCards.length);
-  if (matchedCards.length === 16) {
-    gameOver();
-  }
+    clickedCards[0].classList.toggle('match');
+    clickedCards[1].classList.toggle('match');
+    console.log(matchedCards.length);
+    if (matchedCards.length === 16) {
+        gameOver();
+    }
 }
 
 //function to disable clicks on matched cards
@@ -100,6 +115,7 @@ function gotMatch() {
 
 //function to show modal when game is over
 
+
 //function to reset game
 
 //function to reset the time
@@ -109,7 +125,7 @@ function gotMatch() {
 //function to stop game when all the cards are matched
 
 function gameOver() {
-  console.log ('YOU MATCHED ALL THE CARDS!')
+    console.log('YOU MATCHED ALL THE CARDS!');
 }
 
 //if cards match function

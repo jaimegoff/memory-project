@@ -1,0 +1,50 @@
+//Shuffle deck
+
+function shuffleDeck() {
+    console.log('Cards to shuffle', allCards);
+    const shuffledCards = shuffle(allCards);
+    for (let index = deck.length; index >= 0; index--) {
+        deck.appendChild(shuffledCards);
+    }
+}
+
+    shuffleDeck();
+
+
+//function to start game
+function startGame () {
+
+}
+
+function shuffleDeck() {
+let allCards = Array.from('deck',shuffle(0, deck.length));
+    console.log('Cards to shuffle', allCards);
+    }
+
+
+    shuffleDeck();
+
+
+
+const allCards = Array.from(document.querySelectorAll('.card'));
+
+function startGame(){
+const shuffledCards = shuffle(cards);
+for (var i= 0; i < shuffledCards.length; i++){
+[].forEach.call(shuffledCards, function(item){
+deck.appendChild(item);
+});
+}
+}
+
+window.onload = startGame();
+
+
+function startGame(){
+   var shuffledCards = shuffle(cards);
+   for (var i= 0; i < shuffledCards.length; i++){
+      [].forEach.call(shuffledCards, function(item){
+         deck.appendChild(item);
+      });
+   }
+}
