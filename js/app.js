@@ -4,6 +4,7 @@ let card = document.getElementsByClassName('card');
 let cards = [...card];
 let clickedCards = [];
 let matchedCards = [];
+let moves = 0
 /*
  * Create a list that holds all of your cards
  */
@@ -61,18 +62,22 @@ window.onload = startGame();
 cards.forEach(function(card) {
     card.addEventListener('click', function(e) {
         clickedCards.push(card);
+
         card.classList.add('open', 'show');
 
         //setTimeout function
         if (clickedCards.length === 2) {
+            counterUp();
             setTimeout(function() {
                 clickedCards.forEach(function(card) {
+
                     card.classList.remove('open', 'show');
                 });
                 clickedCards = [];
 
             }, 1000);
             checkMatch();
+
         }
     });
 });
@@ -96,17 +101,33 @@ function gotMatch() {
     clickedCards[0].classList.toggle('match','disabled');
     clickedCards[1].classList.toggle('match', 'disabled');
     console.log(matchedCards.length);
-    
+
     if (matchedCards.length === 16) {
         gameOver();
     }
 }
+
+
+
+function gameOver() {
+    alert('YOU MATCHED ALL THE CARDS!');
+}
+
+//if cards match function
+
+
 
 //function to disable clicks on matched cards
 
 //function for when cards do not match
 
 //function to count moves
+
+function counterUp(){
+  moves++;
+  const counter = document.querySelector('.moves');
+  counter.innerHTML= moves;
+}
 
 //function to decrees star rating
 
@@ -124,9 +145,3 @@ function gotMatch() {
 //function to reset moves
 
 //function to stop game when all the cards are matched
-
-function gameOver() {
-    console.log('YOU MATCHED ALL THE CARDS!');
-}
-
-//if cards match function
