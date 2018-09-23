@@ -5,6 +5,8 @@ let cards = [...card];
 let clickedCards = [];
 let matchedCards = [];
 let moves = 0
+let starNum = document.querySelector('.stars li');
+let starNumTwo = document.querySelector('.stars2 li');
 /*
  * Create a list that holds all of your cards
  */
@@ -19,28 +21,28 @@ let moves = 0
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length,
-        temporaryValue, randomIndex;
+  var currentIndex = array.length,
+    temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 
-    return array;
+  return array;
 }
 //function to shuffle deck and generate new cards
 
 function startGame() {
-    const shuffledCards = shuffle(cards);
-    for (var index = 0; index < shuffledCards.length; index++) {
-        [].forEach.call(shuffledCards, function(card) {
-            deck.appendChild(card);
-        });
-    }
+  const shuffledCards = shuffle(cards);
+  for (var index = 0; index < shuffledCards.length; index++) {
+    [].forEach.call(shuffledCards, function(card) {
+      deck.appendChild(card);
+    });
+  }
 }
 
 window.onload = startGame();
@@ -60,60 +62,61 @@ window.onload = startGame();
 
 
 cards.forEach(function(card) {
-    card.addEventListener('click', function(e) {
-        clickedCards.push(card);
+  card.addEventListener('click', function(e) {
+    clickedCards.push(card);
 
-        card.classList.add('open', 'show');
+    card.classList.add('open', 'show');
 
-        //setTimeout function
-        if (clickedCards.length === 2) {
-            counterUp();
-            setTimeout(function() {
-                clickedCards.forEach(function(card) {
+    //setTimeout function
+    if (clickedCards.length === 2) {
+      counterUp();
+      downStar();
+      checkMatch();
+      setTimeout(function() {
+        clickedCards.forEach(function(card) {
 
-                    card.classList.remove('open', 'show');
-                });
-                clickedCards = [];
+          card.classList.remove('open', 'show');
+        });
+        clickedCards = [];
 
-            }, 1000);
-            checkMatch();
+      }, 1000);
 
-        }
-    });
+
+    }
+  });
 });
 
 //Checking Match function
 function checkMatch() {
-    if (
-        clickedCards[0].firstElementChild.className ===
-        clickedCards[1].firstElementChild.className
-    ) {
-        gotMatch();
-        matchedCards.push(clickedCards[0], clickedCards[1]);
-        console.log('Match!');
-    } else {
-        console.log('No Match!');
-    }
+  if (
+    clickedCards[0].firstElementChild.className ===
+    clickedCards[1].firstElementChild.className
+  ) {
+    gotMatch();
+    matchedCards.push(clickedCards[0], clickedCards[1]);
+    console.log('Match!');
+  } else {
+    console.log('No Match!');
+  }
 }
 
 //function for when cards match
 function gotMatch() {
-    clickedCards[0].classList.toggle('match','disabled');
-    clickedCards[1].classList.toggle('match', 'disabled');
-    console.log(matchedCards.length);
+  clickedCards[0].classList.toggle('match', 'disabled');
+  clickedCards[1].classList.toggle('match', 'disabled');
+  console.log(matchedCards.length);
 
-    if (matchedCards.length === 16) {
-        gameOver();
-    }
+  if (matchedCards.length === 16) {
+    gameOver();
+  }
 }
 
 
-
+// function for when all the cards are matched
 function gameOver() {
-    alert('YOU MATCHED ALL THE CARDS!');
+  alert('YOU MATCHED ALL THE CARDS!');
 }
 
-//if cards match function
 
 
 
@@ -123,20 +126,49 @@ function gameOver() {
 
 //function to count moves
 
-function counterUp(){
+function counterUp() {
   moves++;
   const counter = document.querySelector('.moves');
-  counter.innerHTML= moves;
+  counter.innerHTML = moves;
 }
 
 //function to decrees star rating
+function downStar() {
+switch (moves) {
+  case 10 :
+  hideStar ();
+  break;
+  case 20:
+  hideStar2 ();
+}
+}
+
+
+//   if (moves === 1 || moves === 2) {
+//     hideStar();
+//
+//     hideStar();
+//   }
+// }
+function hideStar (){
+
+  starNum.style.display = "none";
+}
+
+function hideStar2 (){
+
+  starNumTwo.style.display = "none";
+}
+
+
+
+
+
+
 
 //funciton to count time
 
 //function to display time
-
-//function to show modal when game is over
-
 
 //function to reset game
 
