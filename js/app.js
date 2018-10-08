@@ -9,8 +9,8 @@ let starNum = document.querySelector('.stars li');
 let starNumTwo = document.querySelector('.stars2 li');
 let clockID;
 let time = 0;
-
-
+let modal = document.getElementById('endModal');
+let span = document.getElementsByClassName("close")[0];
 
 /*
  * Create a list that holds all of your cards
@@ -50,7 +50,7 @@ function startGame() {
   }
 }
 
-window.onload = startGame();
+window.onload = startGame();startTimer();
 //function to create game board
 
 /*
@@ -68,7 +68,6 @@ window.onload = startGame();
 cards.forEach(function(card) {
   card.addEventListener('click', function(e) {
     clickedCards.push(card);
-    startTimer();
     card.classList.add('open', 'show');
 
     //setTimeout function
@@ -110,7 +109,7 @@ function gotMatch() {
   clickedCards[1].classList.toggle('match', 'disabled');
   console.log(matchedCards.length);
 
-  if (matchedCards.length === 16) {
+  if (matchedCards.length === 2) {
     gameOver();
     stopTimer();
   }
@@ -119,10 +118,13 @@ function gotMatch() {
 
 // function for when all the cards are matched
 function gameOver() {
-  alert('YOU MATCHED ALL THE CARDS!');
+console.log('end game!');
+    modal.style.display = "block";
+
 }
-
-
+span.onclick = function() {
+  modal.style.display = "none";
+}
 
 
 //function to disable clicks on matched cards

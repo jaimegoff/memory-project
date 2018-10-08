@@ -107,3 +107,33 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  width: 800px;
+  height: 400px;
+  max-width: 100%;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+}
+.modal-content {
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: gray;
+}
+/* .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+} */
+.close {
+  color: black;
+  float: right;
+  font-size: 30px;
+}
