@@ -7,10 +7,11 @@ let matchedCards = [];
 let moves = 0;
 let starNum = document.querySelector('.stars li');
 let starNumTwo = document.querySelector('.stars2 li');
-let timer = document.querySelector('.clock');
-let interval;
-let minute = 0;
-let second = 0;
+let clockID;
+let time = 0;
+
+
+
 /*
  * Create a list that holds all of your cards
  */
@@ -49,7 +50,7 @@ function startGame() {
   }
 }
 
-window.onload = startGame(); startTimer();
+window.onload = startGame();
 //function to create game board
 
 /*
@@ -64,11 +65,10 @@ window.onload = startGame(); startTimer();
  */
 
 
-
 cards.forEach(function(card) {
   card.addEventListener('click', function(e) {
     clickedCards.push(card);
-
+    startTimer();
     card.classList.add('open', 'show');
 
     //setTimeout function
@@ -110,8 +110,9 @@ function gotMatch() {
   clickedCards[1].classList.toggle('match', 'disabled');
   console.log(matchedCards.length);
 
-  if (matchedCards.length === 2) {
+  if (matchedCards.length === 16) {
     gameOver();
+    stopTimer();
   }
 }
 
@@ -165,18 +166,31 @@ function hideStar2() {
 
 
 //function to count time
-function startTimer () {
-  interval = setInterval(function () {
-    timer.innerHTML = minute:second;
-    second ++;
-    if (second = 60){
-      minute++;
-      second = 0;
-    }
+function startTimer() {
+  clockID = setInterval(() => {
+    time++;
+    displayTime();
   }, 1000);
 
-}
+};
+
+
+function stopTimer() {
+  clearInterval(clockID);
+};
 //function to display time
+function displayTime () {
+const timer = document.querySelector('.clock');
+const minutes = Math.floor(time / 60);
+const seconds = time % 60;
+
+  if (seconds < 10) {
+    timer.innerHTML = `${minutes}:0${seconds}`;
+  } else {
+    timer.innerHTML = `${minutes}:${seconds}`;
+  }
+};
+
 
 //function to reset game
 
