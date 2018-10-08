@@ -6,12 +6,12 @@ let clickedCards = [];
 let matchedCards = [];
 let moves = 0;
 let starNum = document.querySelector('.stars li');
-let starNumTwo = document.querySelector('.stars2 li');
+let starNumTwo = document.querySelector('.stars2');
 let clockID;
 let time = 0;
 let modal = document.getElementById('endModal');
 let span = document.getElementsByClassName("close")[0];
-
+let stats = document.getElementById('winnerStats');
 /*
  * Create a list that holds all of your cards
  */
@@ -109,9 +109,10 @@ function gotMatch() {
   clickedCards[1].classList.toggle('match', 'disabled');
   console.log(matchedCards.length);
 
-  if (matchedCards.length === 2) {
+  if (matchedCards.length === 16) {
     gameOver();
     stopTimer();
+    displayStats();
   }
 }
 
@@ -120,16 +121,30 @@ function gotMatch() {
 function gameOver() {
 console.log('end game!');
     modal.style.display = "block";
-
 }
 span.onclick = function() {
   modal.style.display = "none";
 }
+function displayStats (){
+  const clockTime = document.querySelector('.clock').innerHTML;
+  const moves = document.querySelector('.moves').innerHTML;
+  const rating = getStars();
+  stats.innerHTML=`You finished the game with a time of: ${clockTime}. You made ${moves} moves. ${rating} star performance! Good job!`;
+};
 
-
-//function to disable clicks on matched cards
-
-//function for when cards do not match
+// function to get star count
+function getStars() {
+if (moves > 10) {
+  starCount = 2
+};
+if (moves > 20) {
+  starCount = 1
+} else {
+  starCount= 3
+};
+  console.log(starCount);
+return starCount;
+};
 
 //function to count moves
 
@@ -151,14 +166,18 @@ function downStar() {
 }
 
 
+// functions to hide stars
+
 function hideStar() {
 
   starNum.style.display = "none";
+  getStars();
 }
 
 function hideStar2() {
 
   starNumTwo.style.display = "none";
+  getStars();
 };
 
 

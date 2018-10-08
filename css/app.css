@@ -109,7 +109,7 @@ h1 {
 }
 
 .modal {
-  display: none;
+  display: block;
   position: fixed;
   width: 800px;
   height: 400px;
