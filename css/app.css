@@ -109,7 +109,7 @@ h1 {
 }
 
 .modal {
-  display: block;
+  display: none;
   position: fixed;
   width: 800px;
   height: 400px;
@@ -124,16 +124,20 @@ h1 {
   position: relative;
   top: 0;
   left: 0;
-  background-color: gray;
+  background-color: white;
 }
-/* .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: black;
-} */
+.modal-button {
+  display: flex;
+  justify-content: space-around;
+}
+.modal-replay {
+  padding: 2rem;
+  width: 70px;
+  height: 20px;
+};
+
 .close {
   color: black;
   float: right;
-  font-size: 30px;
+  font-size: 40px;
 }

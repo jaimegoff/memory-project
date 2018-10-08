@@ -12,6 +12,8 @@ let time = 0;
 let modal = document.getElementById('endModal');
 let span = document.getElementsByClassName("close")[0];
 let stats = document.getElementById('winnerStats');
+let restart = document.getElementsByClassName("fa fa-repeat")[0];
+let replay = document.getElementsByClassName("modal-replay")[0];
 /*
  * Create a list that holds all of your cards
  */
@@ -50,19 +52,9 @@ function startGame() {
   }
 }
 
-window.onload = startGame();startTimer();
 //function to create game board
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+window.onload = startGame();
+startTimer();
 
 
 cards.forEach(function(card) {
@@ -97,9 +89,9 @@ function checkMatch() {
   ) {
     gotMatch();
     matchedCards.push(clickedCards[0], clickedCards[1]);
-    console.log('Match!');
+
   } else {
-    console.log('No Match!');
+
   }
 }
 
@@ -109,7 +101,7 @@ function gotMatch() {
   clickedCards[1].classList.toggle('match', 'disabled');
   console.log(matchedCards.length);
 
-  if (matchedCards.length === 16) {
+  if (matchedCards.length === 14) {
     gameOver();
     stopTimer();
     displayStats();
@@ -119,31 +111,35 @@ function gotMatch() {
 
 // function for when all the cards are matched
 function gameOver() {
-console.log('end game!');
-    modal.style.display = "block";
+  modal.style.display = "block";
 }
 span.onclick = function() {
   modal.style.display = "none";
 }
-function displayStats (){
+
+replay.onclick = function () {
+  restartPage();
+};
+
+function displayStats() {
   const clockTime = document.querySelector('.clock').innerHTML;
   const moves = document.querySelector('.moves').innerHTML;
   const rating = getStars();
-  stats.innerHTML=`You finished the game with a time of: ${clockTime}. You made ${moves} moves. ${rating} star performance! Good job!`;
+  stats.innerHTML = `You finished the game with a time of: ${clockTime}. You made ${moves} moves. ${rating} star performance!
+   <br></br> Good job!`;
 };
 
 // function to get star count
 function getStars() {
-if (moves > 10) {
-  starCount = 2
-};
-if (moves > 20) {
-  starCount = 1
-} else {
-  starCount= 3
-};
-  console.log(starCount);
-return starCount;
+  if (moves > 10) {
+    starCount = 2
+  };
+  if (moves > 20) {
+    starCount = 1
+  } else {
+    starCount = 3
+  };
+  return starCount;
 };
 
 //function to count moves
@@ -200,10 +196,10 @@ function stopTimer() {
   clearInterval(clockID);
 };
 //function to display time
-function displayTime () {
-const timer = document.querySelector('.clock');
-const minutes = Math.floor(time / 60);
-const seconds = time % 60;
+function displayTime() {
+  const timer = document.querySelector('.clock');
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
 
   if (seconds < 10) {
     timer.innerHTML = `${minutes}:0${seconds}`;
@@ -214,9 +210,19 @@ const seconds = time % 60;
 
 
 //function to reset game
+restart.onclick = function() {
+  restartPage();
+}
+function restartPage () {
+  window.location.reload(true);
+};
 
-//function to reset the time
-
-//function to reset moves
-
-//function to stop game when all the cards are matched
+// Referenced throughout Project:
+// https://www.w3schools.com/jsref/met_loc_reload.asp
+// https://stackoverflow.com/questions/23062548/how-can-i-put-multiple-classes-in-a-li-element
+// https://www.w3schools.com/howto/howto_css_modals.asp
+// https://medium.com/letsboot/memory-game-built-with-jquery-ec6099618d67
+// https://matthewcranford.com/
+// Mike Wales walkthrough
+// Ryan Waite walkthrough
+// Mentor session w/ Michael Jackson
