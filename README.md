@@ -1,8 +1,8 @@
 # Memory Game Project
 
 ## Table of Contents
-1) You can open the game by going to my github and downloading a local copy:
-
+1) You can open the game by going to my gitHub and downloading a local copy:
+https://github.com/jaimegoff/memory-project
 2) You play the game by clicking a card and seeing if there is a match. When all the cards have a match the game is finished!
 You can try to beat your time and star rating and play as many times as you would like.
 
