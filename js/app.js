@@ -228,6 +228,7 @@ function restartPage () {
 
 // Referenced throughout Project:
 // https://www.w3schools.com/jsref/met_loc_reload.asp
+// https://stackoverflow.com/questions/16492401/javascript-setting-pointer-events
 // https://stackoverflow.com/questions/23062548/how-can-i-put-multiple-classes-in-a-li-element
 // https://www.w3schools.com/howto/howto_css_modals.asp
 // https://medium.com/letsboot/memory-game-built-with-jquery-ec6099618d67
