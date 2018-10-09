@@ -67,19 +67,30 @@ cards.forEach(function(card) {
       counterUp();
       downStar();
       checkMatch();
+      disableClick();
       setTimeout(function() {
         clickedCards.forEach(function(card) {
-
           card.classList.remove('open', 'show');
         });
         clickedCards = [];
 
-      }, 1000);
+      }, 100);
 
 
     }
   });
 });
+
+// function to diable other cards
+function disableClick() {
+  setTimeout(function() {
+    cards.forEach(function(card) {
+      card.classList.add('noClick');
+    });
+
+  }, 1000);
+
+};
 
 //Checking Match function
 function checkMatch() {
@@ -175,8 +186,6 @@ function hideStar2() {
   starNumTwo.style.display = "none";
   getStars();
 };
-
-
 
 
 
